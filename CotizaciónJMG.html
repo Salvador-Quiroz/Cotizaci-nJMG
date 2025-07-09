@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Sistema KARDIX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563EB;
+            --light-blue: #EFF6FF;
+            --dark-blue: #1E40AF;
+            --accent-blue: #3B82F6;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    border-radius: 24px;
+    padding: 80px 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--primary-blue);
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #60A5FA, #3B82F6, #2563EB, #1D4ED8);
+    border-radius: 0 0 24px 24px;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.header h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+}
+
+.header .subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.client-section {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 600px;
+    position: relative;
+}
+
+.client-section::before {
+    content: '👤';
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    background: white;
+    color: var(--primary-blue);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.client-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.client-name {
+    font-size: 2rem;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.intro-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 40px;
+    position: relative;
+}
+
+.intro-section::before {
+    content: '💡';
+    position: absolute;
+    top: -15px;
+    left: 40px;
+    background: white;
+    color: var(--primary-blue);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.header-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    display: block;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 1.125rem;
+            margin-bottom: 40px;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-card p {
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--gray-700);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            background: var(--light-blue);
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .tech-item h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+        }
+
+        .tech-item p {
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .tech-item .price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .tech-total {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+        }
+
+        .tech-total h4,
+        .tech-total .price {
+            color: white;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-4px);
+        }
+
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .team-member h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .team-member p {
+            color: var(--gray-600);
+        }
+
+        /* Investment Section */
+        .investment-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            border: none;
+        }
+
+        .investment-section h2 {
+            color: white;
+        }
+
+        .cost-breakdown {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.125rem;
+        }
+
+        .cost-item:last-child {
+            border-bottom: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding-top: 30px;
+            margin-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .payment-plan {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .payment-plan h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .payment-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        /* Terms Grid */
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .term-item {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .term-item:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .term-item h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .term-item p {
+            color: var(--gray-700);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .company-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .logo-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .node {
+            position: absolute;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        .line {
+            position: absolute;
+            background-color: var(--primary-blue);
+        }
+
+        /* Simplified network icon */
+        .node-1 { width: 8px; height: 8px; top: 8px; left: 10px; }
+        .node-2 { width: 10px; height: 10px; top: 6px; left: 30px; }
+        .node-3 { width: 8px; height: 8px; top: 8px; left: 50px; }
+        .node-4 { width: 10px; height: 10px; top: 25px; left: 20px; }
+        .node-5 { width: 10px; height: 10px; top: 25px; left: 40px; }
+        .node-6 { width: 8px; height: 8px; top: 42px; left: 15px; }
+        .node-7 { width: 10px; height: 10px; top: 40px; left: 35px; }
+        .node-8 { width: 8px; height: 8px; top: 42px; left: 45px; }
+
+        .line-h1 { width: 15px; height: 2px; top: 11px; left: 18px; }
+        .line-h2 { width: 15px; height: 2px; top: 11px; left: 38px; }
+        .line-h3 { width: 15px; height: 2px; top: 29px; left: 28px; }
+        .line-h4 { width: 15px; height: 2px; top: 46px; left: 23px; }
+        .line-h5 { width: 15px; height: 2px; top: 46px; left: 38px; }
+
+        .line-v1 { width: 2px; height: 15px; top: 13px; left: 34px; }
+        .line-v2 { width: 2px; height: 15px; top: 30px; left: 39px; }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+        }
+
+        .footer h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 1.125rem;
+            color: var(--gray-300);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: var(--light-blue);
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .highlight-box p {
+            color: var(--gray-700);
+            font-size: 1.125rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header {
+                padding: 40px 24px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 30px 24px;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .feature-grid,
+            .tech-grid,
+            .team-grid,
+            .terms-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cost-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .payment-amount {
+                font-size: 2rem;
+            }
+
+            .header h1 {
+        font-size: 2.8rem;
+    }
+    
+    .header .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .client-section,
+    .intro-section {
+        padding: 24px;
+        margin: 30px auto;
+    }
+    
+    .client-name {
+        font-size: 1.6rem;
+    }
+    
+    .intro-text {
+        font-size: 1.1rem;
+    }
+    
+    .header-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .section,
+            .header,
+            .footer {
+                box-shadow: none;
+                border: 1px solid var(--gray-300);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+    <div class="header-content">
+        <h1>KARDIX</h1>
+        <div class="subtitle">Sistema Inteligente de Gestión de Inventarios</div>
+        
+        <div class="client-section">
+            <div class="client-label">Propuesta exclusiva para</div>
+            <div class="client-name">José María</div>
+        </div>
+        
+        <div class="intro-section">
+            <p class="intro-text">
+                Presentamos una solución completa y moderna para revolucionar la gestión de inventarios de tu empresa. 
+                KARDIX combina tecnología de vanguardia con una interfaz intuitiva para optimizar todos tus procesos de inventario.
+            </p>
+        </div>
+        
+        <div class="header-stats">
+            <div class="stat-item">
+                <span class="stat-number">10</span>
+                <span class="stat-label">Semanas de desarrollo</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Desarrolladores expertos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Módulos principales</span>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+        <!-- Resumen Ejecutivo -->
+        <div class="highlight-box">
+            <h3>🎯 Resumen ejecutivo</h3>
+            <p>
+                Sistema completo de gestión de inventarios con funcionalidades avanzadas, 
+                desarrollo en 10 semanas por un equipo especializado de 4 desarrolladores.
+            </p>
+        </div>
+
+        <!-- Funcionalidades Principales -->
+        <div class="section">
+            <h2>Funcionalidades principales</h2>
+            <p class="section-subtitle">
+                Todas las herramientas que necesitas para una gestión de inventarios eficiente y moderna
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🏪 Gestión de catálogo</h3>
+                    <p>Sistema completo para administrar productos con atributos personalizables y códigos de barras.</p>
+                    <ul class="feature-list">
+                        <li>Creación intuitiva de productos</li>
+                        <li>Gestión de SKUs automática</li>
+                        <li>Organización por categorías</li>
+                        <li>Códigos de barras y QR</li>
+                        <li>Importación/exportación masiva</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📊 Inventario en tiempo Real</h3>
+                    <p>Monitoreo continuo de stock con alertas automáticas y pronósticos inteligentes.</p>
+                    <ul class="feature-list">
+                        <li>Seguimiento en tiempo real</li>
+                        <li>Alertas de stock bajo</li>
+                        <li>Historial de movimientos</li>
+                        <li>Pronósticos automáticos</li>
+                        <li>Control de lotes y vencimientos</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🏢 Multi-ubicación</h3>
+                    <p>Gestiona inventario en múltiples bodegas y tiendas con transferencias seamless.</p>
+                    <ul class="feature-list">
+                        <li>Soporte ilimitado de ubicaciones</li>
+                        <li>Transferencias entre ubicaciones</li>
+                        <li>Flujos de aprobación</li>
+                        <li>Vista geográfica</li>
+                        <li>Auditorías completas</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🛒 Órdenes de compra</h3>
+                    <p>Sistema completo para gestionar proveedores y órdenes de compra automatizadas.</p>
+                    <ul class="feature-list">
+                        <li>Creación simplificada de órdenes</li>
+                        <li>Sugerencias de reorden</li>
+                        <li>Flujo de aprobaciones</li>
+                        <li>Recepción parcial</li>
+                        <li>Integración con proveedores</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🤝 Gestión de clientes</h3>
+                    <p>Base de datos completa de clientes con precios especializados e historial detallado.</p>
+                    <ul class="feature-list">
+                        <li>Perfiles detallados de clientes</li>
+                        <li>Múltiples direcciones</li>
+                        <li>Precios por cliente</li>
+                        <li>Historial de compras</li>
+                        <li>Análisis de comportamiento</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🔐 Control de acceso</h3>
+                    <p>Sistema de roles y permisos granular para mantener la seguridad de tu información.</p>
+                    <ul class="feature-list">
+                        <li>Roles personalizables</li>
+                        <li>Permisos granulares</li>
+                        <li>Restricciones por ubicación</li>
+                        <li>Auditoría de acciones</li>
+                        <li>Autenticación de dos factores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arquitectura Técnica -->
+        <div class="section">
+            <h2>Arquitectura técnica</h2>
+            <p class="section-subtitle">
+                Infraestructura moderna, escalable y confiable con costos operativos mínimos
+            </p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>Frontend - Vercel</h4>
+                    <p>Next.js para interfaz y dashboard</p>
+                    <p class="price">$20 USD/mes</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>Backend API</h4>
+                    <p>Vercel Functions para lógica de negocio</p>
+                    <p class="price">Incluido</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>Almacenamiento</h4>
+                    <p>Cloudflare R2 para archivos</p>
+                    <p class="price">$1-3 USD/mes</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>CDN Global</h4>
+                    <p>Cloudflare para velocidad y seguridad</p>
+                    <p class="price">Gratuito</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>API Rápida</h4>
+                    <p>Cloudflare Workers para reportes</p>
+                    <p class="price">$5 USD/mes</p>
+                </div>
+                
+                <div class="tech-item tech-total">
+                    <h4>COSTO TOTAL MENSUAL</h4>
+                    <p class="price">$27 USD/mes (aprox)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipo de Desarrollo -->
+        <div class="section">
+            <h2>Equipo de desarrollo</h2>
+            <p class="section-subtitle">
+                Equipo especializado de 4 desarrolladores dedicados exclusivamente a tu proyecto
+            </p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">FL</div>
+                    <h4>Frontend Lead</h4>
+                    <p>Especialista en React/Next.js<br>Diseño de interfaces</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="avatar">BD</div>
+                    <h4>Backend Developer</h4>
+                    <p>APIs y lógica de negocio<br>Arquitectura de datos</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="avatar">FS</div>
+                    <h4>Fullstack Developer</h4>
+                    <p>Integración completa<br>Funcionalidades end-to-end</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="avatar">QA</div>
+                    <h4>QA Engineer</h4>
+                    <p>Testing y calidad<br>Optimización de rendimiento</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inversión -->
+        <div class="section investment-section">
+            <h2>Inversión total</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
+                Paquete completo con todas las funcionalidades incluidas
+            </p>
+            
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span>Gestión de catálogo + órdenes de compra</span>
+                    <span>$140,000 MXN</span>
+                </div>
+                <div class="cost-item">
+                    <span>Control de inventario multi-ubicación</span>
+                    <span>$75,000 MXN</span>
+                </div>
+                <div class="cost-item">
+                    <span>Reportes y análisis avanzados</span>
+                    <span>$55,000 MXN</span>
+                </div>
+                <div class="cost-item">
+                    <span>Seguridad y control de roles</span>
+                    <span>$50,000 MXN</span>
+                </div>
+                <div class="cost-item">
+                    <span>INVERSIÓN TOTAL</span>
+                    <span>$320,000 MXN</span>
+                </div>
+            </div>
+            
+            <div class="payment-plan">
+                <h3>💳 Plan de pagos flexible</h3>
+                <div class="payment-amount">4 pagos de $80,000 MXN</div>
+                <p>
+                    • Primer pago al firmar el contrato<br>
+                    • Pagos mensuales durante el desarrollo<br>
+                    • Sin intereses adicionales
+                </p>
+            </div>
+        </div>
+
+        <!-- Términos y Condiciones -->
+        <div class="section">
+            <h2>Términos y Condiciones</h2>
+            <p class="section-subtitle">
+                Condiciones claras y transparentes para una colaboración exitosa
+            </p>
+            
+            <div class="terms-grid">
+                <div class="term-item">
+                    <h4>⏱️ Duración del proyecto</h4>
+                    <p>Desarrollo completo en <strong>10 semanas</strong> a partir del primer pago. Entregas semanales para seguimiento del progreso.</p>
+                </div>
+                
+                <div class="term-item">
+                    <h4>💳 Modalidad de pago</h4>
+                    <p><strong>25%</strong> al firmar el contrato, seguido de <strong>3 pagos mensuales</strong> del 25% cada uno durante el desarrollo.</p>
+                </div>
+                
+                <div class="term-item">
+                    <h4>🛠️ Soporte post-entrega</h4>
+                    <p><strong>1 mes de soporte gratuito</strong> para asegurar el funcionamiento correcto y resolver cualquier inconveniente.</p>
+                </div>
+                
+                <div class="term-item">
+                    <h4>📋 Capacitación incluida</h4>
+                    <p>Capacitación completa del equipo, documentación técnica y manual de usuario para uso óptimo del sistema.</p>
+                </div>
+                
+                <div class="term-item">
+                    <h4>🔒 Garantía de calidad</h4>
+                    <p><strong>3 meses de garantía</strong> para corrección de errores y bugs identificados posterior a la entrega final.</p>
+                </div>
+                
+                <div class="term-item">
+                    <h4>📄 Política de cancelación</h4>
+                    <p>Cualquier parte puede rescindir con <strong>14 días de anticipación</strong>. Compensación por servicios prestados hasta la fecha.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Próximos Pasos -->
+        <div class="highlight-box">
+            <h3>🚀 Próximos pasos</h3>
+            <p>
+                <strong>1.</strong> Revisión y aprobación de la propuesta &nbsp;•&nbsp; 
+                <strong>2.</strong> Firma del contrato &nbsp;•&nbsp; 
+                <strong>3.</strong> Primer pago y inicio del desarrollo &nbsp;•&nbsp; 
+                <strong>4.</strong> Reunión de kick-off con el equipo
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="company-logo">
+                <div class="logo-container">
+                    <div class="icon-container">
+                        <!-- Network nodes -->
+                        <div class="node node-1"></div>
+                        <div class="node node-2"></div>
+                        <div class="node node-3"></div>
+                        <div class="node node-4"></div>
+                        <div class="node node-5"></div>
+                        <div class="node node-6"></div>
+                        <div class="node node-7"></div>
+                        <div class="node node-8"></div>
+                        
+                        <!-- Connection lines -->
+                        <div class="line line-h1"></div>
+                        <div class="line line-h2"></div>
+                        <div class="line line-h3"></div>
+                        <div class="line line-h4"></div>
+                        <div class="line line-h5"></div>
+                        <div class="line line-v1"></div>
+                        <div class="line line-v2"></div>
+                    </div>
+                    <div class="logo-text">SaaDt</div>
+                </div>
+            </div>
+            
+            <h2>Transformemos tu gestión de inventarios</h2>
+            <p>
+                En SaaDt, creamos soluciones tecnológicas que impulsan el crecimiento de tu negocio. 
+                Estamos listos para desarrollar KARDIX y llevarte al siguiente nivel en gestión de inventarios.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
